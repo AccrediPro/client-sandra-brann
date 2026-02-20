@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://tammy-mitchell-coaching.vercel.app/sitemap-index.xml

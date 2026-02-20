@@ -1,0 +1,116 @@
+---
+import { siteConfig } from '../../config/siteConfig';
+const testimonials = siteConfig.testimonials;
+---
+
+<section class="py-14 md:py-24" style="background-color: #faf6ef; border-top: 1px solid rgba(201,169,110,0.2);">
+  <div class="container mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center max-w-2xl mx-auto mb-10 md:mb-12" data-aos="fade-up">
+      <span class="inline-block font-body font-medium text-sm uppercase tracking-wider mb-3" style="color: #98D8AA;">
+        Success Stories
+      </span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight" style="color: #1B3A5C; letter-spacing: -0.02em; line-height: 1.1;">
+        Real <em class="not-italic text-primary-600">Transformations</em>
+      </h2>
+      <p class="mt-4 text-lg font-body" style="color: #6b6b6b;">
+        Hear from the healthcare professionals and motivated individuals who chose to invest in themselves.
+      </p>
+    </div>
+
+    <!-- Desktop: Swiper Carousel -->
+    <div class="hidden md:block" data-aos="fade-up" data-aos-delay="100">
+      <div class="swiper testimonials-swiper pb-12">
+        <div class="swiper-wrapper items-stretch">
+          {testimonials.map((t) => (
+            <div class="swiper-slide h-auto">
+              <div class="rounded-2xl shadow-sm p-8 md:p-10 h-full flex flex-col" style="background-color: #FAF6EF; border-top: 3px solid #C9A96E; border: 1px solid rgba(201,169,110,0.2); border-top: 3px solid #C9A96E;">
+                <!-- Quote mark -->
+                <div class="mb-5" style="color: #C9A96E; opacity: 0.6;">
+                  <svg class="w-10 h-10" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                  </svg>
+                </div>
+
+                <!-- Outcome badge -->
+                <span class="inline-block self-start text-xs font-body font-semibold px-3 py-1 rounded-full mb-4 text-[#7a5c20]" style="background-color: #fdf3e0;">
+                  ✓ {t.outcome}
+                </span>
+
+                <!-- Quote text -->
+                <blockquote class="font-heading italic leading-relaxed mb-6 text-lg flex-grow" style="color: #3a3a3a;">
+                  "{t.content}"
+                </blockquote>
+
+                <!-- Client info -->
+                <div class="flex items-center gap-3 mt-auto pt-4 border-t border-secondary-100">
+                  <div class="w-12 h-12 rounded-full font-heading font-bold text-lg flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #1B3A5C, #2a5a8c); color: #98D8AA; box-shadow: 0 0 0 2px #C9A96E;">
+                    {t.name.charAt(0)}
+                  </div>
+                  <div>
+                    <p class="font-heading font-semibold" style="color: #1B3A5C;">{t.name}</p>
+                    <p class="text-sm font-body" style="color: #6b6b6b;">{t.role}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+        <!-- Pagination dots -->
+        <div class="swiper-pagination mt-6"></div>
+      </div>
+    </div>
+
+    <!-- Mobile: Stacked cards -->
+    <div class="md:hidden space-y-6">
+      {testimonials.slice(0, 4).map((t, i) => (
+        <div class="rounded-2xl shadow-sm p-6 flex flex-col" style="background-color: #FAF6EF; border: 1px solid rgba(201,169,110,0.2); border-top: 3px solid #C9A96E;" data-aos="fade-up" data-aos-delay={i * 75}>
+          <span class="inline-block self-start text-xs font-body font-semibold px-3 py-1 rounded-full mb-4 text-[#7a5c20]" style="background-color: #fdf3e0;">
+            ✓ {t.outcome}
+          </span>
+          <blockquote class="font-heading italic leading-relaxed mb-4 text-base" style="color: #3a3a3a;">
+            "{t.content}"
+          </blockquote>
+          <div class="flex items-center gap-3 pt-3 border-t border-secondary-100">
+            <div class="w-12 h-12 rounded-full font-heading font-bold flex items-center justify-center flex-shrink-0" style="background: linear-gradient(135deg, #1B3A5C, #2a5a8c); color: #98D8AA; box-shadow: 0 0 0 2px #C9A96E;">
+              {t.name.charAt(0)}
+            </div>
+            <div>
+              <p class="font-heading font-semibold text-sm" style="color: #1B3A5C;">{t.name}</p>
+              <p class="text-xs font-body" style="color: #6b6b6b;">{t.role}</p>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  import Swiper from 'swiper';
+  import { Pagination } from 'swiper/modules';
+
+  new Swiper('.testimonials-swiper', {
+    modules: [Pagination],
+    slidesPerView: 1,
+    spaceBetween: 24,
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+    },
+    breakpoints: {
+      768: {
+        slidesPerView: 2,
+      },
+      1024: {
+        slidesPerView: 3,
+      },
+    },
+  });
+</script>
+
+<style>
+  .swiper-pagination-bullet-active {
+    background-color: #98D8AA;
+  }
+</style>

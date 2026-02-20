@@ -1,0 +1,253 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Button from '../components/ui/Button.astro';
+import Badge from '../components/ui/Badge.astro';
+import CTA from '../components/sections/CTA.astro';
+import { cn } from '../lib/utils';
+import { siteConfig } from '../config/siteConfig';
+
+const coachName = siteConfig.coach.name;
+const coachTitle = siteConfig.coach.title;
+const storyParagraphs = siteConfig.bio.storyParagraphs;
+const differentiator = siteConfig.bio.differentiator;
+const certifications = siteConfig.certifications;
+const approachItems = siteConfig.approachItems;
+const holisticAspects = siteConfig.bio.holisticAspects;
+---
+
+<BaseLayout
+  title={`About ${coachName} | ${coachTitle}`}
+  description={`${siteConfig.coach.name} brings ${siteConfig.stats.yearsExperience} years of healthcare and leadership experience to coaching. Discover her proven 5-step approach to work-life balance.`}
+  page="about"
+>
+  <Header slot="header" />
+
+  <!-- Hero Section -->
+  <section class="relative py-14 md:py-24 bg-gradient-to-br from-secondary-50 via-white to-primary-50 overflow-hidden">
+    <!-- Decorative elements -->
+    <div class="absolute top-0 right-0 w-96 h-96 bg-primary-100 rounded-full opacity-30 blur-3xl translate-x-1/2 -translate-y-1/2"></div>
+    <div class="absolute bottom-0 left-0 w-64 h-64 bg-accent-100 rounded-full opacity-30 blur-3xl -translate-x-1/2 translate-y-1/2"></div>
+
+    <div class="container mx-auto px-4 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+        <!-- Image Column -->
+        <div class="flex justify-center lg:justify-start order-2 lg:order-1" data-aos="fade-right">
+          <div class="relative mx-8 sm:mx-12 lg:mx-0">
+            <!-- Decorative background shapes -->
+            <div class="absolute -top-5 -left-5 w-full h-full rounded-2xl transform -rotate-3" style="background-color: rgba(152,216,170,0.35);"></div>
+            <div class="absolute -bottom-5 -right-5 w-full h-full rounded-2xl transform rotate-3" style="background-color: rgba(201,169,110,0.25);"></div>
+
+            <!-- Coach portrait — full image, no cropping -->
+            <img
+              src={siteConfig.images.portrait}
+              alt={`${siteConfig.coach.name} — Certified Professional Coach and ${siteConfig.stats.yearsExperience} year healthcare veteran`}
+              width="1024" height="1024"
+              decoding="async"
+              class="relative w-56 sm:w-72 md:w-80 lg:w-96 rounded-2xl shadow-2xl ring-4 ring-white"
+              style="display: block; width: 100%; height: auto; object-fit: contain;"
+              loading="eager"
+            />
+
+            <!-- Floating credential badge -->
+            <div class="absolute -bottom-4 -right-4 rounded-xl px-4 py-3 shadow-lg text-center" style="background-color: #1B3A5C;">
+              <p class="font-heading font-bold text-2xl leading-none" style="color: #C9A96E;">40+</p>
+              <p class="font-body text-xs mt-0.5" style="color: #98D8AA;">Years Experience</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Content Column -->
+        <div class="order-1 lg:order-2" data-aos="fade-left" data-aos-delay="100">
+          <span class="inline-block text-primary-600 font-medium text-sm uppercase tracking-wider mb-3">
+            About Me
+          </span>
+
+          <h1 class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary-900 leading-tight">
+            Hi, I'm {coachName.split(' ')[0]}
+          </h1>
+
+          <p class="mt-2 text-xl md:text-2xl text-primary-600 font-heading font-medium">
+            {coachTitle}
+          </p>
+
+          <div class="mt-6 space-y-4">
+            {storyParagraphs.map((paragraph) => (
+              <p class="text-lg font-body" style="color: #3a3a3a; line-height: 1.7;">
+                {paragraph}
+              </p>
+            ))}
+          </div>
+
+          <!-- Quick stats -->
+          <div class="mt-8 flex flex-wrap gap-6">
+            <div class="text-center">
+              <p class="text-3xl md:text-4xl font-heading font-bold text-primary-600">40+</p>
+              <p class="text-sm text-gray-600 font-body">Years in Healthcare</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl md:text-4xl font-heading font-bold text-primary-600">3</p>
+              <p class="text-sm text-gray-600 font-body">Certifications</p>
+            </div>
+            <div class="text-center">
+              <p class="text-3xl md:text-4xl font-heading font-bold text-primary-600">5</p>
+              <p class="text-sm text-gray-600 font-body">Step Approach</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5-Step Approach Section -->
+  <section id="method" class="py-14 md:py-24 bg-secondary-50" data-aos="fade-up">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <span class="inline-block text-primary-600 font-medium text-sm uppercase tracking-wider mb-3">
+          My Proven Method
+        </span>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary-900">
+          The 5-Step Approach
+        </h2>
+        <p class="mt-6 text-lg text-gray-700 font-body leading-relaxed">
+          {differentiator}
+        </p>
+      </div>
+
+      <!-- 5-Step Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
+        {approachItems.map((item, index) => (
+          <div
+            class={cn(
+              "bg-secondary-50 rounded-xl p-6 hover:shadow-lg transition-shadow duration-300",
+              index >= 3 && "md:col-span-1 lg:col-span-1"
+            )}
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div class="flex items-center gap-3 mb-4">
+              <div class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center text-white font-heading font-bold text-sm flex-shrink-0">
+                {index + 1}
+              </div>
+              <div class="w-12 h-12 bg-primary-100 rounded-lg flex items-center justify-center text-primary-600">
+                <Fragment set:html={item.icon} />
+              </div>
+            </div>
+            <h3 class="text-xl font-heading font-semibold text-primary-900 mb-2">
+              {item.title}
+            </h3>
+            <p class="text-gray-600 font-body">
+              {item.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section class="py-14 md:py-24 bg-white" data-aos="fade-up">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center mb-12">
+        <span class="inline-block text-primary-600 font-medium text-sm uppercase tracking-wider mb-3">
+          Credentials
+        </span>
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary-900">
+          My Certifications
+        </h2>
+        <p class="mt-4 text-lg text-gray-700 font-body">
+          I bring a unique combination of healthcare expertise, leadership experience, and certified coaching skills to help you transform your life.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+        {certifications.map((cert, index) => (
+          <div
+            class="bg-white rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow duration-300 text-center"
+            data-aos="fade-up"
+            data-aos-delay={index * 100}
+          >
+            <div class="mb-4">
+              <Badge variant={cert.variant} class="text-base px-4 py-2">
+                {cert.title.includes('(') ? cert.title.match(/\(([^)]+)\)/)?.[1] : cert.title.split(' ').map(w => w[0]).join('')}
+              </Badge>
+            </div>
+            <h3 class="text-lg font-heading font-semibold text-primary-900 mb-2">
+              {cert.title}
+            </h3>
+            <p class="text-sm text-gray-600 font-body">
+              {cert.description}
+            </p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Holistic Approach Section -->
+  <section class="py-14 md:py-24 bg-secondary-50" data-aos="fade-up">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <span class="inline-block text-primary-600 font-medium text-sm uppercase tracking-wider mb-3">
+              My Philosophy
+            </span>
+            <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary-900 leading-tight">
+              A Holistic Approach to Sustainable Success
+            </h2>
+            <div class="mt-6 space-y-4 text-lg text-gray-700 font-body leading-relaxed">
+              <p>
+                I firmly believe that all things are connected. True success comes from approaching health and life from a holistic perspective—considering every dimension of who you are.
+              </p>
+              <p>
+                Using Functional Health as a guiding principle, I help you examine and strengthen six key aspects of your life to bring about the sustainable results you seek.
+              </p>
+            </div>
+
+            <!-- Holistic Aspects -->
+            <div class="mt-8 flex flex-wrap gap-3">
+              {holisticAspects.map((aspect) => (
+                <span class="inline-flex items-center px-4 py-2 rounded-full bg-primary-50 text-primary-700 font-medium text-sm border border-primary-200">
+                  {aspect}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div class="flex justify-center">
+            <div class="relative rounded-2xl overflow-hidden shadow-xl w-full max-w-sm">
+              <!-- Photo by Valdhy Mbemba on Unsplash -->
+              <img
+                src="/images/unsplash/wellness-2.jpg"
+                alt="Group wellness coaching session outdoors"
+                width="1080" height="720"
+                decoding="async"
+                class="w-full object-cover"
+                style="aspect-ratio: 4/3;"
+                loading="lazy"
+              />
+              <!-- Overlaid quote -->
+              <div class="absolute inset-0 flex items-end" style="background: linear-gradient(to top, rgba(27,58,92,0.85) 50%, transparent 100%);">
+                <blockquote class="p-6">
+                  <p class="text-base font-heading font-medium italic leading-snug" style="color: #faf6ef;">
+                    "Approaching health holistically is the only true path to lasting success in every area of your life."
+                  </p>
+                  <footer class="mt-2">
+                    <p class="text-sm font-body font-semibold" style="color: #C9A96E;">— {siteConfig.coach.name}</p>
+                  </footer>
+                </blockquote>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <CTA />
+
+  <Footer slot="footer" />
+</BaseLayout>

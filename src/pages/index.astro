@@ -1,0 +1,51 @@
+---
+import { siteConfig } from '../config/siteConfig';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import Hero from '../components/sections/Hero.astro';
+import StatsBar from '../components/sections/StatsBar.astro';
+import Testimonials from '../components/sections/Testimonials.astro';
+import AboutPreview from '../components/sections/AboutPreview.astro';
+import ServicesPreview from '../components/sections/ServicesPreview.astro';
+import WhoIWorkWith from '../components/sections/WhoIWorkWith.astro';
+import Process from '../components/sections/Process.astro';
+import FAQ from '../components/sections/FAQ.astro';
+import CTA from '../components/sections/CTA.astro';
+---
+
+<BaseLayout
+  title={`${siteConfig.coach.name} — ${siteConfig.coach.title}`}
+  description={siteConfig.site.description}
+>
+  <Header slot="header" />
+
+  <!-- 1. Hero — split layout with real image -->
+  <Hero />
+
+  <!-- 2. Stats Bar -->
+  <StatsBar />
+
+  <!-- 3. Testimonials — moved up, expanded to 6 -->
+  <Testimonials />
+
+  <!-- 4. About Preview — with coach portrait -->
+  <AboutPreview />
+
+  <!-- 5. Services Preview — Most Popular highlighted -->
+  <ServicesPreview />
+
+  <!-- 6. Who I Work With — new section -->
+  <WhoIWorkWith />
+
+  <!-- 7. Process / Approach — horizontal timeline -->
+  <Process />
+
+  <!-- 8. FAQ — 6 questions -->
+  <FAQ />
+
+  <!-- 9. CTA — with success background image -->
+  <CTA />
+
+  <Footer slot="footer" />
+</BaseLayout>

@@ -1,0 +1,59 @@
+---
+import { cn } from '../../lib/utils';
+
+interface Props {
+  name: string;
+  label: string;
+  required?: boolean;
+  error?: string;
+  placeholder?: string;
+  class?: string;
+  value?: string;
+  rows?: number;
+}
+
+const {
+  name,
+  label,
+  required = false,
+  error,
+  placeholder,
+  class: className,
+  value,
+  rows = 4,
+} = Astro.props;
+
+const textareaId = `textarea-${name}`;
+const errorId = `${textareaId}-error`;
+const hasError = !!error;
+---
+
+<div class={cn('flex flex-col gap-1.5', className)}>
+  <label for={textareaId} class="font-body text-sm font-medium text-gray-700">
+    {label}
+    {required && <span class="text-red-500 ml-0.5" aria-hidden="true">*</span>}
+  </label>
+  <textarea
+    id={textareaId}
+    name={name}
+    placeholder={placeholder}
+    required={required}
+    rows={rows}
+    aria-invalid={hasError}
+    aria-describedby={hasError ? errorId : undefined}
+    class={cn(
+      'font-body rounded-lg border px-4 py-2.5 text-base transition-colors resize-y',
+      'placeholder:text-gray-400',
+      'focus:outline-none focus:ring-2 focus:ring-offset-1',
+      hasError
+        ? 'border-red-500 focus:border-red-500 focus:ring-red-500/30'
+        : 'border-gray-300 focus:border-primary-500 focus:ring-primary-500/30',
+      'disabled:cursor-not-allowed disabled:bg-gray-50 disabled:opacity-60'
+    )}
+  >{value}</textarea>
+  {hasError && (
+    <p id={errorId} class="font-body text-sm text-red-600" role="alert">
+      {error}
+    </p>
+  )}
+</div>

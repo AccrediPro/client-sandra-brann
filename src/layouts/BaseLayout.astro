@@ -1,0 +1,67 @@
+---
+import '../styles/global.css';
+import SEOHead from '../components/seo/SEOHead.astro';
+import SchemaOrg from '../components/seo/SchemaOrg.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonical?: string;
+  type?: 'website' | 'article';
+  noindex?: boolean;
+  includeSchema?: boolean;
+  page?: 'home' | 'about' | 'services' | 'contact' | 'privacy' | 'terms';
+}
+
+const {
+  title,
+  description,
+  image,
+  canonical,
+  type,
+  noindex,
+  includeSchema = true,
+  page = 'home',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Favicons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="generator" content={Astro.generator} />
+    <!-- Fonts are self-hosted via @fontsource (imported in global.css) — no external CDN needed -->
+    <SEOHead title={title} description={description} image={image} canonical={canonical} type={type} noindex={noindex} />
+    {includeSchema && <SchemaOrg page={page} />}
+    <style>html { scroll-behavior: smooth; } section[id] { scroll-margin-top: 80px; }</style>
+    <slot name="head" />
+  </head>
+  <body class="bg-white min-h-screen" style="color: #3a3a3a;">
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-primary-600 text-white px-4 py-2 rounded-lg z-50">
+      Skip to main content
+    </a>
+    <slot name="header" />
+    <main id="main-content">
+      <slot />
+    </main>
+    <slot name="footer" />
+
+    <script>
+      import AOS from 'aos';
+
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100,
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,127 @@
+---
+import { cn } from '../../lib/utils';
+import { siteConfig } from '../../config/siteConfig';
+
+interface NavLink {
+  href: string;
+  label: string;
+}
+
+const navLinks: NavLink[] = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/services', label: 'Services' },
+  { href: '/contact', label: 'Contact' },
+];
+
+const currentYear = new Date().getFullYear();
+const coachEmail = siteConfig.coach.email;
+const socialLinks = siteConfig.social;
+---
+
+<footer style="background-color: #1B3A5C; border-top: 2px solid #C9A96E;">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-12 lg:py-16">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 lg:gap-12">
+      <!-- Brand Column -->
+      <div class="md:col-span-1">
+        <a
+          href="/"
+          class="inline-block font-heading text-xl lg:text-2xl font-semibold transition-colors" style="color: #FAF6EF; hover-color: #98D8AA;"
+        >
+          {siteConfig.coach.name}
+        </a>
+        <p class="mt-3 font-body text-sm leading-relaxed" style="color: rgba(250,246,239,0.75);">
+          Transformational Health and Success Coach helping motivated individuals find work-life balance, health, and confidence.
+        </p>
+        <!-- Social Media Links -->
+        <div class="mt-4 flex items-center gap-3">
+          {socialLinks.map((social) => (
+            <a
+              href={social.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              class="inline-flex items-center justify-center w-9 h-9 rounded-full transition-colors" style="background-color: rgba(152,216,170,0.2); color: #98D8AA;" onmouseenter="this.style.backgroundColor='rgba(152,216,170,0.4)'" onmouseleave="this.style.backgroundColor='rgba(152,216,170,0.2)'"
+              aria-label={`Follow on ${social.name}`}
+            >
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+                <path d={social.iconPath} />
+              </svg>
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- Navigation Column -->
+      <div class="md:col-span-1">
+        <h3 class="font-heading text-lg font-semibold mb-4" style="color: #FAF6EF;">Quick Links</h3>
+        <nav aria-label="Footer navigation">
+          <ul class="space-y-2">
+            {navLinks.map((link) => (
+              <li>
+                <a
+                  href={link.href}
+                  class="font-body transition-colors text-sm" style="color: rgba(250,246,239,0.75);"
+                >
+                  {link.label}
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+
+      <!-- Contact Column -->
+      <div class="md:col-span-1">
+        <h3 class="font-heading text-lg font-semibold mb-4" style="color: #FAF6EF;">Get in Touch</h3>
+        <div class="space-y-3">
+          <a
+            href={`mailto:${coachEmail}`}
+            class="flex items-center gap-2 font-body transition-colors text-sm group" style="color: rgba(250,246,239,0.75);"
+          >
+            <svg
+              class="w-5 h-5 transition-colors" style="color: #98D8AA;"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+              />
+            </svg>
+            <span>{coachEmail}</span>
+          </a>
+          <p class="font-body text-xs" style="color: rgba(250,246,239,0.5);">
+            I'd love to hear from you. Feel free to reach out anytime!
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="mt-10 pt-8" style="border-top: 1px solid rgba(250,246,239,0.15);">
+      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+        <p class="font-body text-sm text-center sm:text-left" style="color: rgba(250,246,239,0.5);">
+          &copy; {currentYear} {siteConfig.coach.name}. All rights reserved.
+        </p>
+        <nav aria-label="Legal navigation" class="flex items-center gap-4">
+          <a
+            href="/privacy"
+            class="font-body transition-colors text-sm" style="color: rgba(250,246,239,0.5);"
+          >
+            Privacy Policy
+          </a>
+          <a
+            href="/terms"
+            class="font-body transition-colors text-sm" style="color: rgba(250,246,239,0.5);"
+          >
+            Terms of Use
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</footer>

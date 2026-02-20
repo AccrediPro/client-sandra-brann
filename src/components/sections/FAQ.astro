@@ -1,0 +1,123 @@
+---
+import { siteConfig } from '../../config/siteConfig';
+const faqs = siteConfig.faq;
+---
+
+<section id="faq" class="py-14 md:py-24" style="background-color: #faf6ef;">
+  <div class="container mx-auto px-4">
+    <!-- Section Header -->
+    <div class="text-center max-w-2xl mx-auto mb-8 md:mb-12" data-aos="fade-up">
+      <span class="inline-block text-primary-600 font-body font-medium text-sm uppercase tracking-wider mb-3">
+        Questions & Answers
+      </span>
+      <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold leading-tight" style="color: #1B3A5C; letter-spacing: -0.02em; line-height: 1.1;">
+        Frequently Asked <em class="not-italic text-primary-600">Questions</em>
+      </h2>
+      <p class="mt-4 text-lg font-body" style="color: #6b6b6b;">
+        Have questions about coaching? I'm here to help you feel confident about taking the next step toward transformation.
+      </p>
+    </div>
+
+    <!-- FAQ Accordion -->
+    <div class="max-w-3xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+      <div class="space-y-4" id="faq-accordion">
+        {faqs.map((faq, index) => (
+          <div class="rounded-xl overflow-hidden bg-white shadow-sm hover:shadow-md transition-shadow" style="border: 1px solid rgba(201,169,110,0.25);">
+            <button
+              type="button"
+              class="w-full px-6 py-5 text-left flex items-center justify-between gap-4 hover:bg-gray-50 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary-500 focus-visible:ring-inset"
+              aria-expanded="false"
+              aria-controls={`faq-answer-${index}`}
+              id={`faq-question-${index}`}
+            >
+              <span class="font-heading font-semibold text-base md:text-lg pr-4" style="color: #1B3A5C;">
+                {faq.question}
+              </span>
+              <span class="flex-shrink-0 transition-transform duration-200" style="color: #98D8AA;" aria-hidden="true">
+                <svg class="w-6 h-6 faq-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                </svg>
+              </span>
+            </button>
+            <div
+              id={`faq-answer-${index}`}
+              role="region"
+              aria-labelledby={`faq-question-${index}`}
+              class="hidden"
+            >
+              <div class="px-6 pb-5 pt-0">
+                <p class="font-body max-w-[680px]" style="color: #6b6b6b; line-height: 1.7;">
+                  {faq.answer}
+                </p>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Contact CTA -->
+    <div class="mt-12 text-center" data-aos="fade-up" data-aos-delay="200">
+      <p class="font-body mb-4" style="color: #6b6b6b;">
+        Don't see your question here?
+      </p>
+      <a
+        href="/contact"
+        class="inline-flex items-center gap-2 text-primary-600 hover:text-primary-700 font-body font-medium transition-colors"
+      >
+        Reach out — I'd love to hear from you
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" aria-hidden="true">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const accordion = document.getElementById('faq-accordion');
+    if (!accordion) return;
+
+    const buttons = accordion.querySelectorAll('button[aria-expanded]');
+
+    buttons.forEach((button) => {
+      button.addEventListener('click', () => {
+        const expanded = button.getAttribute('aria-expanded') === 'true';
+        const targetId = button.getAttribute('aria-controls');
+        const target = targetId ? document.getElementById(targetId) : null;
+        const icon = button.querySelector('.faq-icon');
+
+        if (!target) return;
+
+        if (expanded) {
+          button.setAttribute('aria-expanded', 'false');
+          target.classList.add('hidden');
+          if (icon) (icon as HTMLElement).style.transform = 'rotate(0deg)';
+        } else {
+          buttons.forEach((otherButton) => {
+            const otherTargetId = otherButton.getAttribute('aria-controls');
+            const otherTarget = otherTargetId ? document.getElementById(otherTargetId) : null;
+            const otherIcon = otherButton.querySelector('.faq-icon');
+
+            if (otherTarget && otherButton !== button) {
+              otherButton.setAttribute('aria-expanded', 'false');
+              otherTarget.classList.add('hidden');
+              if (otherIcon) (otherIcon as HTMLElement).style.transform = 'rotate(0deg)';
+            }
+          });
+
+          button.setAttribute('aria-expanded', 'true');
+          target.classList.remove('hidden');
+          if (icon) (icon as HTMLElement).style.transform = 'rotate(45deg)';
+        }
+      });
+    });
+  });
+</script>
+
+<style>
+  .faq-icon {
+    transition: transform 0.2s ease;
+  }
+</style>

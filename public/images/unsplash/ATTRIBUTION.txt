@@ -1,0 +1,15 @@
+Unsplash Image Attribution
+===========================
+
+These images are sourced from Unsplash (https://unsplash.com) under the Unsplash License.
+Attribution is provided as required.
+
+coaching-session.jpg
+  - Photo by Docusign (https://unsplash.com/@docusign)
+  - Source: https://unsplash.com/photos/two-women-high-fiving-each-other-pkhBlvTLyog
+  - License: https://unsplash.com/license
+
+coaching-office.jpg
+  - Photo by Deliberate Directions (https://unsplash.com/@deliberatedirections)
+  - Source: https://unsplash.com/photos/a-cozy-room-with-a-view-a-plant-and-a-couch-hBjYNP-mEXk
+  - License: https://unsplash.com/license

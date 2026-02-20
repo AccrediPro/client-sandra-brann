@@ -1,0 +1,173 @@
+---
+import { siteConfig } from '../../config/siteConfig';
+
+interface Props {
+  page?: 'home' | 'about' | 'services' | 'contact' | 'privacy' | 'terms';
+}
+
+const { page = 'home' } = Astro.props;
+
+const siteUrl = Astro.site?.toString().replace(/\/$/, '') || siteConfig.schema.fallbackUrl;
+const currentUrl = Astro.url.href;
+
+// Absolute image URL helper
+function absUrl(path: string): string {
+  return path.startsWith('http') ? path : `${siteUrl}${path}`;
+}
+
+const portraitUrl = absUrl(siteConfig.images.portrait);
+const ogImageUrl = absUrl(siteConfig.images.ogDefault);
+
+// --- WebSite schema (all pages) ---
+const websiteSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebSite',
+  '@id': `${siteUrl}/#website`,
+  name: siteConfig.site.name,
+  url: siteUrl,
+  description: siteConfig.site.description,
+  publisher: { '@id': `${siteUrl}/#person` },
+};
+
+// --- Person schema (all pages) ---
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${siteUrl}/#person`,
+  name: siteConfig.coach.name,
+  jobTitle: siteConfig.schema.jobTitle,
+  description: siteConfig.schema.description,
+  email: siteConfig.coach.email,
+  telephone: siteConfig.coach.phone,
+  image: portraitUrl,
+  url: siteUrl,
+  address: {
+    '@type': 'PostalAddress',
+    addressRegion: 'Arkansas',
+    addressCountry: 'US',
+  },
+  sameAs: siteConfig.social.map((s) => s.url),
+  knowsAbout: siteConfig.schema.knowsAbout,
+};
+
+// --- ProfessionalService schema (all pages) ---
+const professionalServiceSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  '@id': `${siteUrl}/#business`,
+  name: siteConfig.site.name,
+  description: siteConfig.schema.description,
+  url: siteUrl,
+  email: siteConfig.coach.email,
+  telephone: siteConfig.coach.phone,
+  image: portraitUrl,
+  priceRange: siteConfig.schema.priceRange,
+  address: {
+    '@type': 'PostalAddress',
+    addressRegion: 'Arkansas',
+    addressCountry: 'US',
+  },
+  founder: { '@id': `${siteUrl}/#person` },
+  hasOfferCatalog: {
+    '@type': 'OfferCatalog',
+    name: 'Coaching Services',
+    itemListElement: siteConfig.servicesDetail.map((service) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: service.title,
+        description: service.description,
+        provider: { '@id': `${siteUrl}/#person` },
+      },
+    })),
+  },
+};
+
+// --- BreadcrumbList (per page) ---
+const breadcrumbMap: Record<string, Array<{ name: string; url: string }>> = {
+  home: [{ name: 'Home', url: siteUrl }],
+  about: [
+    { name: 'Home', url: siteUrl },
+    { name: 'About', url: `${siteUrl}/about` },
+  ],
+  services: [
+    { name: 'Home', url: siteUrl },
+    { name: 'Services', url: `${siteUrl}/services` },
+  ],
+  contact: [
+    { name: 'Home', url: siteUrl },
+    { name: 'Contact', url: `${siteUrl}/contact` },
+  ],
+  privacy: [
+    { name: 'Home', url: siteUrl },
+    { name: 'Privacy Policy', url: `${siteUrl}/privacy` },
+  ],
+  terms: [
+    { name: 'Home', url: siteUrl },
+    { name: 'Terms of Use', url: `${siteUrl}/terms` },
+  ],
+};
+
+const breadcrumbs = breadcrumbMap[page] || breadcrumbMap.home;
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: breadcrumbs.map((item, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: item.name,
+    item: item.url,
+  })),
+};
+
+// --- Service schemas (services page only) ---
+const serviceSchemas = page === 'services'
+  ? siteConfig.servicesDetail.map((service) => ({
+      '@context': 'https://schema.org',
+      '@type': 'Service',
+      name: service.title,
+      description: service.description,
+      provider: { '@id': `${siteUrl}/#person` },
+      areaServed: {
+        '@type': 'Country',
+        name: 'United States',
+      },
+      offers: {
+        '@type': 'Offer',
+        price: service.price === 'FREE' ? '0' : service.price.replace(/[^0-9.]/g, ''),
+        priceCurrency: 'USD',
+        description: `${service.subtitle} — ${service.duration}`,
+      },
+    }))
+  : [];
+
+// --- FAQPage schema (home page, where FAQ section lives) ---
+const faqSchema = page === 'home'
+  ? {
+      '@context': 'https://schema.org',
+      '@type': 'FAQPage',
+      mainEntity: siteConfig.faq.map((item) => ({
+        '@type': 'Question',
+        name: item.question,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: item.answer,
+        },
+      })),
+    }
+  : null;
+
+// Collect all schemas for this page
+const schemas = [
+  websiteSchema,
+  personSchema,
+  professionalServiceSchema,
+  breadcrumbSchema,
+  ...serviceSchemas,
+  ...(faqSchema ? [faqSchema] : []),
+];
+---
+
+{schemas.map((schema) => (
+  <script type="application/ld+json" set:html={JSON.stringify(schema, null, 2)} />
+))}

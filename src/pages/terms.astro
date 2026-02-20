@@ -1,0 +1,178 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { siteConfig } from '../config/siteConfig';
+
+const coachName = siteConfig.coach.name;
+const coachEmail = siteConfig.coach.email;
+const lastUpdated = "January 30, 2026";
+---
+
+<BaseLayout
+  title={`Terms of Use | ${coachName}`}
+  description={`Terms of Use for ${coachName} ${siteConfig.coach.title}. Please read these terms carefully before using our services.`}
+  page="terms"
+>
+  <Header slot="header" />
+
+  <!-- Hero Section -->
+  <section class="py-12 md:py-16 bg-gradient-to-br from-secondary-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary-900">
+          Terms of Use
+        </h1>
+        <p class="mt-4 text-lg text-gray-600 font-body">
+          Last updated: {lastUpdated}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-primary">
+
+        <!-- Introduction -->
+        <div class="mb-10">
+          <p class="text-gray-700 font-body leading-relaxed">
+            Welcome to the website of {coachName}. By accessing or using this website and my coaching services, you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use this website or my services.
+          </p>
+        </div>
+
+        <!-- Acceptance of Terms -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Acceptance of Terms
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            By accessing this website, you acknowledge that you have read, understood, and agree to be bound by these Terms of Use and any applicable laws and regulations. These terms constitute a legally binding agreement between you and {coachName}.
+          </p>
+          <p class="text-gray-700 font-body leading-relaxed">
+            I reserve the right to modify these terms at any time. Your continued use of the website following any changes indicates your acceptance of the new terms.
+          </p>
+        </div>
+
+        <!-- Services Description -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Services Description
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            I provide transformational health and success coaching services to support individuals seeking work-life balance and personal growth. My services include:
+          </p>
+          <ul class="list-disc list-inside text-gray-700 font-body space-y-2 mb-4">
+            <li>Energy Leadership Strategy Sessions</li>
+            <li>One-on-one coaching sessions</li>
+            <li>Group coaching sessions</li>
+            <li>Proprietary energy assessments</li>
+            <li>Ongoing email and text support</li>
+          </ul>
+          <p class="text-gray-700 font-body leading-relaxed font-semibold">
+            Important: My coaching services are not intended as a substitute for professional medical advice, diagnosis, or treatment. Always consult with qualified healthcare providers for medical advice.
+          </p>
+        </div>
+
+        <!-- User Responsibilities -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            User Responsibilities
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            When using this website and my services, you agree to:
+          </p>
+          <ul class="list-disc list-inside text-gray-700 font-body space-y-2">
+            <li>Provide accurate and complete information when contacting me</li>
+            <li>Use the website and services only for lawful purposes</li>
+            <li>Not attempt to gain unauthorized access to any part of the website</li>
+            <li>Not use the website in any way that could damage or impair its functionality</li>
+            <li>Take responsibility for your own health decisions</li>
+            <li>Consult with appropriate healthcare providers before making changes to your health regimen</li>
+          </ul>
+        </div>
+
+        <!-- Intellectual Property -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Intellectual Property
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            All content on this website, including but not limited to text, graphics, logos, images, and software, is the property of {coachName} and is protected by copyright and other intellectual property laws.
+          </p>
+          <p class="text-gray-700 font-body leading-relaxed">
+            You may not reproduce, distribute, modify, or create derivative works from any content on this website without my prior written consent.
+          </p>
+        </div>
+
+        <!-- Disclaimers -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Disclaimers
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            The information provided on this website and through my coaching services is for educational and informational purposes only. It is not intended as a substitute for professional medical advice, diagnosis, or treatment.
+          </p>
+          <ul class="list-disc list-inside text-gray-700 font-body space-y-2 mb-4">
+            <li>I do not guarantee specific results from my coaching services</li>
+            <li>Individual results may vary based on many factors</li>
+            <li>The website content is provided "as is" without warranties of any kind</li>
+            <li>I do not warrant that the website will be uninterrupted or error-free</li>
+          </ul>
+          <p class="text-gray-700 font-body leading-relaxed">
+            You should always seek the advice of a qualified healthcare provider with any questions regarding a medical condition.
+          </p>
+        </div>
+
+        <!-- Limitation of Liability -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Limitation of Liability
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            To the fullest extent permitted by law, {coachName} shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or related to:
+          </p>
+          <ul class="list-disc list-inside text-gray-700 font-body space-y-2 mb-4">
+            <li>Your use of or inability to use the website or services</li>
+            <li>Any decisions made based on information provided through the website or services</li>
+            <li>Any unauthorized access to or use of our servers or personal information</li>
+            <li>Any interruption or cessation of services</li>
+          </ul>
+          <p class="text-gray-700 font-body leading-relaxed">
+            My total liability shall not exceed the amount paid by you for services in the twelve months preceding the claim.
+          </p>
+        </div>
+
+        <!-- Governing Law -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Governing Law
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed">
+            These Terms of Use shall be governed by and construed in accordance with the laws of the state in which {coachName} operates, without regard to conflict of law principles. Any disputes arising under these terms shall be resolved through good-faith negotiation or, if necessary, through appropriate legal channels.
+          </p>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Contact Information
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            If you have any questions about these Terms of Use, please contact me at:
+          </p>
+          <div class="bg-secondary-50 rounded-xl p-6">
+            <p class="text-primary-900 font-heading font-semibold mb-2">{coachName}</p>
+            <p class="text-gray-700 font-body">
+              Email: <a href={`mailto:${coachEmail}`} class="text-primary-600 hover:text-primary-700 underline">{coachEmail}</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

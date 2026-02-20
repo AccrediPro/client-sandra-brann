@@ -1,0 +1,190 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/layout/Header.astro';
+import Footer from '../components/layout/Footer.astro';
+import { siteConfig } from '../config/siteConfig';
+
+const coachName = siteConfig.coach.name;
+const coachEmail = siteConfig.coach.email;
+const lastUpdated = "January 30, 2026";
+---
+
+<BaseLayout
+  title={`Privacy Policy | ${coachName}`}
+  description={`Privacy Policy for ${coachName} ${siteConfig.coach.title}. Learn how we collect, use, and protect your personal information.`}
+  page="privacy"
+>
+  <Header slot="header" />
+
+  <!-- Hero Section -->
+  <section class="py-12 md:py-16 bg-gradient-to-br from-secondary-50 via-white to-primary-50">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto text-center">
+        <h1 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-primary-900">
+          Privacy Policy
+        </h1>
+        <p class="mt-4 text-lg text-gray-600 font-body">
+          Last updated: {lastUpdated}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Content Section -->
+  <section class="py-12 md:py-16 bg-white">
+    <div class="container mx-auto px-4">
+      <div class="max-w-3xl mx-auto prose prose-lg prose-primary">
+
+        <!-- Introduction -->
+        <div class="mb-10">
+          <p class="text-gray-700 font-body leading-relaxed">
+            {coachName} ("I", "me", or "my") is committed to protecting your privacy. This Privacy Policy explains how I collect, use, disclose, and safeguard your information when you visit my website or use my coaching services.
+          </p>
+        </div>
+
+        <!-- Information Collection -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Information Collection
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            I may collect information about you in various ways, including:
+          </p>
+          <h3 class="text-xl font-heading font-semibold text-primary-800 mb-3">
+            Personal Data
+          </h3>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            When you contact me through the website or engage my coaching services, I may collect personally identifiable information, such as:
+          </p>
+          <ul class="list-disc list-inside text-gray-700 font-body mb-4 space-y-2">
+            <li>Your name</li>
+            <li>Email address</li>
+            <li>Phone number</li>
+            <li>Health-related information you choose to share</li>
+            <li>Any other information you voluntarily provide</li>
+          </ul>
+          <h3 class="text-xl font-heading font-semibold text-primary-800 mb-3">
+            Automatically Collected Data
+          </h3>
+          <p class="text-gray-700 font-body leading-relaxed">
+            When you visit my website, I may automatically collect certain information about your device, including information about your web browser, IP address, time zone, and some of the cookies that are installed on your device.
+          </p>
+        </div>
+
+        <!-- Use of Information -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Use of Information
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            I use the information I collect to:
+          </p>
+          <ul class="list-disc list-inside text-gray-700 font-body space-y-2">
+            <li>Respond to your inquiries and provide customer service</li>
+            <li>Deliver the coaching services you request</li>
+            <li>Send you email communications related to your coaching program</li>
+            <li>Improve and personalize your experience on my website</li>
+            <li>Analyze website usage to improve my services</li>
+            <li>Comply with legal obligations</li>
+          </ul>
+        </div>
+
+        <!-- Data Protection -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Data Protection
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            I implement appropriate technical and organizational security measures to protect your personal information against unauthorized access, alteration, disclosure, or destruction. These measures include:
+          </p>
+          <ul class="list-disc list-inside text-gray-700 font-body space-y-2">
+            <li>Secure storage of any personal data collected</li>
+            <li>Limited access to personal information on a need-to-know basis</li>
+            <li>Regular review of data collection, storage, and processing practices</li>
+            <li>Encryption of data transmitted through the website</li>
+          </ul>
+          <p class="text-gray-700 font-body leading-relaxed mt-4">
+            However, please note that no method of transmission over the Internet or method of electronic storage is 100% secure.
+          </p>
+        </div>
+
+        <!-- Cookies -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Cookies
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            My website may use cookies to enhance your browsing experience. Cookies are small files stored on your device that help me:
+          </p>
+          <ul class="list-disc list-inside text-gray-700 font-body space-y-2">
+            <li>Remember your preferences</li>
+            <li>Understand how you use my website</li>
+            <li>Improve your overall experience</li>
+          </ul>
+          <p class="text-gray-700 font-body leading-relaxed mt-4">
+            You can choose to disable cookies through your browser settings. However, this may affect certain features of the website.
+          </p>
+        </div>
+
+        <!-- Third-Party Services -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Third-Party Services
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            My website may contain links to third-party websites or services that are not operated by me. I have no control over and assume no responsibility for the content, privacy policies, or practices of any third-party sites or services.
+          </p>
+          <p class="text-gray-700 font-body leading-relaxed">
+            I may use third-party service providers to help operate my business and website. These providers are bound by contractual obligations to keep personal information confidential and use it only for the purposes for which it was disclosed.
+          </p>
+        </div>
+
+        <!-- Your Rights -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Your Rights
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            You have the right to:
+          </p>
+          <ul class="list-disc list-inside text-gray-700 font-body space-y-2">
+            <li>Access the personal information I hold about you</li>
+            <li>Request correction of any inaccurate information</li>
+            <li>Request deletion of your personal information</li>
+            <li>Opt-out of marketing communications</li>
+            <li>Withdraw consent at any time (where applicable)</li>
+          </ul>
+        </div>
+
+        <!-- Changes to This Policy -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Changes to This Policy
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed">
+            I may update this Privacy Policy from time to time. I will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes.
+          </p>
+        </div>
+
+        <!-- Contact Information -->
+        <div class="mb-10" data-aos="fade-up">
+          <h2 class="text-2xl font-heading font-bold text-primary-900 mb-4">
+            Contact Information
+          </h2>
+          <p class="text-gray-700 font-body leading-relaxed mb-4">
+            If you have any questions about this Privacy Policy or my data practices, please contact me at:
+          </p>
+          <div class="bg-secondary-50 rounded-xl p-6">
+            <p class="text-primary-900 font-heading font-semibold mb-2">{coachName}</p>
+            <p class="text-gray-700 font-body">
+              Email: <a href={`mailto:${coachEmail}`} class="text-primary-600 hover:text-primary-700 underline">{coachEmail}</a>
+            </p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</BaseLayout>

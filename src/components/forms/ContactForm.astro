@@ -1,0 +1,225 @@
+---
+import { cn } from '../../lib/utils';
+import Button from '../ui/Button.astro';
+import Input from '../ui/Input.astro';
+import Textarea from '../ui/Textarea.astro';
+import { siteConfig } from '../../config/siteConfig';
+
+interface Props {
+  /** Optional ID for the form element */
+  id?: string;
+  /** Optional class for the form container */
+  class?: string;
+  /** Email to display in error state for direct contact fallback */
+  fallbackEmail?: string;
+  /** Custom success message */
+  successMessage?: string;
+  /** Custom loading message */
+  loadingMessage?: string;
+}
+
+const {
+  id = 'contact-form',
+  class: className,
+  fallbackEmail = siteConfig.coach.email,
+  successMessage = "Thank you for reaching out! I'll get back to you within 24-48 hours.",
+  loadingMessage = 'Sending your message...',
+} = Astro.props;
+
+const formId = `${id}-element`;
+const loadingId = `${id}-loading`;
+const successId = `${id}-success`;
+const errorId = `${id}-error`;
+const retryId = `${id}-retry`;
+---
+
+<div class={cn('contact-form-wrapper', className)} data-contact-form>
+  <form id={formId} class="space-y-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <Input
+        name="name"
+        label="Your Name"
+        type="text"
+        required
+        placeholder="Jane Smith"
+        autocomplete="name"
+      />
+      <Input
+        name="email"
+        label="Email Address"
+        type="email"
+        required
+        placeholder="jane@example.com"
+        autocomplete="email"
+      />
+    </div>
+
+    <Input
+      name="phone"
+      label="Phone Number (Optional)"
+      type="tel"
+      placeholder="(555) 123-4567"
+      autocomplete="tel"
+    />
+
+    <Textarea
+      name="message"
+      label="Your Message"
+      required
+      placeholder="Tell me a bit about yourself and what you're hoping to achieve. Are you looking for work-life balance, a career change, better health, or more confidence? What challenges are you facing?"
+      rows={6}
+    />
+
+    <div class="flex flex-col sm:flex-row gap-4 items-center justify-between">
+      <p class="text-sm text-gray-500 font-body">
+        <span class="text-red-500">*</span> Required fields
+      </p>
+      <Button type="submit" variant="primary" size="lg" class="w-full sm:w-auto">
+        <span class="flex items-center gap-2">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
+          Send Message
+        </span>
+      </Button>
+    </div>
+    <p class="text-xs text-gray-500 mt-3 text-center font-body">Your information is kept strictly confidential and will never be shared.</p>
+  </form>
+
+  <!-- Loading State -->
+  <div id={loadingId} class="hidden text-center py-8" aria-live="polite">
+    <div class="inline-flex items-center gap-3 text-primary-600">
+      <svg class="animate-spin w-6 h-6" fill="none" viewBox="0 0 24 24" aria-hidden="true">
+        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+      </svg>
+      <span class="font-body text-lg">{loadingMessage}</span>
+    </div>
+  </div>
+
+  <!-- Success State -->
+  <div id={successId} class="hidden text-center py-8" aria-live="polite">
+    <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+      <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+      </svg>
+    </div>
+    <h3 class="text-xl font-heading font-semibold text-primary-900 mb-2">Message Sent!</h3>
+    <p class="text-gray-600 font-body">
+      {successMessage}
+    </p>
+  </div>
+
+  <!-- Error State -->
+  <div id={errorId} class="hidden text-center py-8" aria-live="polite">
+    <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+      <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </div>
+    <h3 class="text-xl font-heading font-semibold text-primary-900 mb-2">Something went wrong</h3>
+    <p class="text-gray-600 font-body mb-4">
+      Please try again or email me directly at{' '}
+      <a href={`mailto:${fallbackEmail}`} class="text-primary-600 hover:underline">{fallbackEmail}</a>
+    </p>
+    <Button type="button" variant="secondary" size="md" id={retryId}>
+      Try Again
+    </Button>
+  </div>
+</div>
+
+<script define:vars={{ formId, loadingId, successId, errorId, retryId }}>
+  // Contact form handling
+  function initContactForm() {
+    const form = document.getElementById(formId);
+    const loadingState = document.getElementById(loadingId);
+    const successState = document.getElementById(successId);
+    const errorState = document.getElementById(errorId);
+    const retryButton = document.getElementById(retryId);
+
+    if (!form) return;
+
+    function showState(state) {
+      form.classList.toggle('hidden', state !== 'form');
+      loadingState?.classList.toggle('hidden', state !== 'loading');
+      successState?.classList.toggle('hidden', state !== 'success');
+      errorState?.classList.toggle('hidden', state !== 'error');
+    }
+
+    function validateEmail(email) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+    }
+
+    function validateForm(formData) {
+      const errors = {};
+      const name = formData.get('name')?.toString().trim();
+      const email = formData.get('email')?.toString().trim();
+      const message = formData.get('message')?.toString().trim();
+
+      if (!name) {
+        errors.name = 'Name is required';
+      }
+
+      if (!email) {
+        errors.email = 'Email is required';
+      } else if (!validateEmail(email)) {
+        errors.email = 'Please enter a valid email address';
+      }
+
+      if (!message) {
+        errors.message = 'Message is required';
+      }
+
+      return {
+        isValid: Object.keys(errors).length === 0,
+        errors,
+        data: { name, email, phone: formData.get('phone')?.toString().trim() || '', message }
+      };
+    }
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      // Client-side validation
+      const formData = new FormData(form);
+      const validation = validateForm(formData);
+
+      if (!validation.isValid) {
+        // Show first error to user
+        const firstError = Object.values(validation.errors)[0];
+        alert(firstError);
+        return;
+      }
+
+      showState('loading');
+
+      try {
+        const response = await fetch('/api/send-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(validation.data),
+        });
+
+        if (!response.ok) throw new Error('Failed to send message');
+
+        showState('success');
+        form.reset();
+      } catch (error) {
+        console.error('Form submission error:', error);
+        showState('error');
+      }
+    });
+
+    retryButton?.addEventListener('click', () => {
+      showState('form');
+    });
+  }
+
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initContactForm);
+  } else {
+    initContactForm();
+  }
+</script>

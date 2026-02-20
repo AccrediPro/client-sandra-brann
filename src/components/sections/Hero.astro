@@ -1,0 +1,113 @@
+---
+import Button from '../ui/Button.astro';
+import { siteConfig } from '../../config/siteConfig';
+---
+
+<!-- Hero: Full-width background image with gradient overlay -->
+<section class="relative min-h-[75vh] md:min-h-[85vh] lg:min-h-screen flex items-center justify-center overflow-hidden">
+
+  <!-- Background image -->
+  <img
+    src={siteConfig.images.hero}
+    alt={`${siteConfig.coach.name} — ${siteConfig.coach.title}, golden-hour portrait`}
+    width="1024" height="1024"
+    decoding="async"
+    class="absolute inset-0 w-full h-full object-cover"
+    style="object-position: center 30%;"
+    loading="eager"
+    fetchpriority="high"
+  />
+
+  <!-- Gradient overlay: strong navy left → lighter right for readability -->
+  <div
+    class="absolute inset-0"
+    style="background: linear-gradient(135deg, rgba(27,58,92,0.85) 0%, rgba(27,58,92,0.4) 100%);"
+    aria-hidden="true"
+  ></div>
+
+  <!-- Content: centered over image -->
+  <div class="relative z-10 w-full px-4 sm:px-6 py-10 md:py-20 lg:py-28 text-center max-w-4xl mx-auto">
+
+    <!-- Eyebrow label -->
+    <span
+      class="inline-block font-body font-semibold text-sm uppercase tracking-widest mb-6"
+      style="color: #98D8AA;"
+      data-aos="fade-up"
+    >
+      Transformational Health &amp; Success Coaching
+    </span>
+
+    <!-- Main headline -->
+    <h1
+      class="text-3xl sm:text-4xl md:text-5xl xl:text-6xl font-heading font-bold text-white"
+      style="letter-spacing: -0.02em; line-height: 1.15;"
+      data-aos="fade-up"
+      data-aos-delay="50"
+    >
+      Transform Your Health.<br />
+      <span style="color: #98D8AA;">Transform Your Life.</span>
+    </h1>
+
+    <!-- Sub-headline -->
+    <p
+      class="mt-4 text-sm sm:text-base md:text-xl font-body leading-relaxed max-w-2xl mx-auto"
+      style="color: rgba(255,255,255,0.88);"
+      data-aos="fade-up"
+      data-aos-delay="100"
+    >
+      With 40+ years of healthcare and leadership experience, I help motivated individuals find work-life balance, reclaim their health, and build purposeful careers through my proven Sustainable Success Method.
+    </p>
+
+    <!-- CTA Buttons -->
+    <div
+      class="mt-6 flex flex-col sm:flex-row gap-3 justify-center"
+      data-aos="fade-up"
+      data-aos-delay="150"
+    >
+      <a
+        href="/contact"
+        class="inline-flex items-center justify-center px-7 py-4 font-body font-semibold rounded-xl text-base transition-colors shadow-lg"
+        style="background-color: #98D8AA; color: #1B3A5C;"
+        onmouseover="this.style.backgroundColor='#7ecb94'"
+        onmouseout="this.style.backgroundColor='#98D8AA'"
+      >
+        Book Your Free Session
+      </a>
+      <a
+        href="/services"
+        class="inline-flex items-center justify-center px-7 py-4 border-2 text-white font-body font-medium rounded-xl text-base transition-colors"
+        style="border-color: rgba(255,255,255,0.6);"
+        onmouseover="this.style.borderColor='rgba(255,255,255,1)'"
+        onmouseout="this.style.borderColor='rgba(255,255,255,0.6)'"
+      >
+        Explore Services
+      </a>
+    </div>
+
+    <!-- Trust signals -->
+    <div
+      class="mt-6 flex flex-wrap gap-x-4 gap-y-2 justify-center"
+      data-aos="fade-up"
+      data-aos-delay="200"
+    >
+      <span class="flex items-center gap-2 text-sm font-body" style="color: rgba(255,255,255,0.75);">
+        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true" style="color: #98D8AA;">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        40+ Years Experience
+      </span>
+      <span class="flex items-center gap-2 text-sm font-body" style="color: rgba(255,255,255,0.75);">
+        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true" style="color: #98D8AA;">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        Free First Session
+      </span>
+      <span class="flex items-center gap-2 text-sm font-body" style="color: rgba(255,255,255,0.75);">
+        <svg class="w-4 h-4 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20" aria-hidden="true" style="color: #98D8AA;">
+          <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+        </svg>
+        Certified Professional Coach
+      </span>
+    </div>
+  </div>
+</section>

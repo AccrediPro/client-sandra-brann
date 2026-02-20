@@ -1,0 +1,68 @@
+/* Self-hosted fonts via @fontsource — no Google Fonts CDN dependency */
+@import '@fontsource/cormorant-garamond/400.css';
+@import '@fontsource/cormorant-garamond/400-italic.css';
+@import '@fontsource/cormorant-garamond/500.css';
+@import '@fontsource/cormorant-garamond/500-italic.css';
+@import '@fontsource/cormorant-garamond/600.css';
+@import '@fontsource/cormorant-garamond/700.css';
+@import '@fontsource/nunito/300.css';
+@import '@fontsource/nunito/400.css';
+@import '@fontsource/nunito/400-italic.css';
+@import '@fontsource/nunito/500.css';
+@import '@fontsource/nunito/600.css';
+@import '@fontsource/nunito/700.css';
+
+/* AOS - Animate On Scroll */
+@import 'aos/dist/aos.css';
+
+/* Swiper - Carousel/Slider (testimonials only) */
+@import 'swiper/css';
+@import 'swiper/css/pagination';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Prevent horizontal scroll from off-canvas elements (mobile menu) */
+@layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+}
+
+/* Premium visual polish — global base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    color: #3a3a3a;
+    background-color: #ffffff;
+    font-size: 1.0625rem; /* 17px for comfortable reading */
+    line-height: 1.7;
+  }
+
+  /* Scroll-margin for anchored headings (accounts for fixed header ~80px) */
+  h1[id], h2[id], h3[id], section[id] {
+    scroll-margin-top: 88px;
+  }
+
+  /* Premium heading typography — apply to all heading elements using font-heading class */
+  .font-heading {
+    letter-spacing: -0.01em;
+  }
+}
+
+/* Swiper pagination — brand mint */
+@layer utilities {
+  .swiper-pagination-bullet-active {
+    background-color: #98D8AA !important;
+  }
+
+  .swiper-pagination-bullet {
+    background-color: #98D8AA;
+    opacity: 0.4;
+  }
+}
