@@ -1,15 +1,30 @@
-Unsplash Image Attribution
-===========================
+Unsplash Image Attribution — Mariska Goebel Client Website
+============================================================
 
 These images are sourced from Unsplash (https://unsplash.com) under the Unsplash License.
-Attribution is provided as required.
+Free to use for commercial and non-commercial purposes.
+License: https://unsplash.com/license
 
-coaching-session.jpg
-  - Photo by Docusign (https://unsplash.com/@docusign)
-  - Source: https://unsplash.com/photos/two-women-high-fiving-each-other-pkhBlvTLyog
-  - License: https://unsplash.com/license
+wellness-1.jpg
+  - Title: Herbs hanging on a string (green plants on white wall)
+  - Photo by Ilse Orsel (https://unsplash.com/@ilseorsel)
+  - Source: https://unsplash.com/photos/green-plant-on-white-wall-HVP_T178iAc
+  - Photo ID: HVP_T178iAc
+  - Usage: Natural herbs / wellness section background
 
-coaching-office.jpg
-  - Photo by Deliberate Directions (https://unsplash.com/@deliberatedirections)
-  - Source: https://unsplash.com/photos/a-cozy-room-with-a-view-a-plant-and-a-couch-hBjYNP-mEXk
-  - License: https://unsplash.com/license
+wellness-2.jpg
+  - Title: Smiling medical professional (health coaching portrait)
+  - Photo by Ezebunwo Omachi (https://unsplash.com/@ezebunwoomachi)
+  - Source: https://unsplash.com/photos/a-smiling-medical-professional-is-posed-ghzifDQFu9M
+  - Photo ID: ghzifDQFu9M
+  - Usage: Health coaching / consultation section imagery
+
+wellness-3.jpg
+  - Title: Woman sitting in yoga position with eyes closed
+  - Photo by Angelina Sarycheva (https://unsplash.com/@sarycheva_angel)
+  - Source: https://unsplash.com/photos/a-woman-sitting-in-a-yoga-position-with-her-eyes-closed-Isj-7j1liis
+  - Photo ID: Isj-7j1liis
+  - Usage: Hormonal health / calm wellness lifestyle imagery
+
+---
+Last updated: 2026-02-20
