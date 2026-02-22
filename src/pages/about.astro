@@ -19,7 +19,7 @@ const holisticAspects = siteConfig.bio.holisticAspects;
 
 <BaseLayout
   title={`About ${coachName} | ${coachTitle}`}
-  description={`${siteConfig.coach.name} brings ${siteConfig.stats.yearsExperience} years of healthcare and leadership experience to coaching. Discover her proven 5-step approach to work-life balance.`}
+  description={`${siteConfig.coach.name} brings ${siteConfig.stats.yearsExperience} years of clinical experience to functional medicine coaching. Discover her proven 4-step approach to thyroid and hormonal health.`}
   page="about"
 >
   <Header slot="header" />
@@ -39,14 +39,14 @@ const holisticAspects = siteConfig.bio.holisticAspects;
             <div class="absolute -top-5 -left-5 w-full h-full rounded-2xl transform -rotate-3" style="background-color: rgba(152,216,170,0.35);"></div>
             <div class="absolute -bottom-5 -right-5 w-full h-full rounded-2xl transform rotate-3" style="background-color: rgba(201,169,110,0.25);"></div>
 
-            <!-- Coach portrait — full image, no cropping -->
+            <!-- Wellness imagery — herbs and natural remedies -->
             <img
               src={siteConfig.images.portrait}
-              alt={`${siteConfig.coach.name} — Certified Professional Coach and ${siteConfig.stats.yearsExperience} year healthcare veteran`}
+              alt="Natural herbs and wellness remedies representing functional medicine and root-cause healing"
               width="1024" height="1024"
               decoding="async"
               class="relative w-56 sm:w-72 md:w-80 lg:w-96 rounded-2xl shadow-2xl ring-4 ring-white"
-              style="display: block; width: 100%; height: auto; object-fit: contain;"
+              style="display: block; width: 100%; height: auto; object-fit: cover; aspect-ratio: 4/5;"
               loading="eager"
             />
 
@@ -91,7 +91,7 @@ const holisticAspects = siteConfig.bio.holisticAspects;
               <p class="text-sm text-gray-600 font-body">Certifications</p>
             </div>
             <div class="text-center">
-              <p class="text-3xl md:text-4xl font-heading font-bold text-primary-600">5</p>
+              <p class="text-3xl md:text-4xl font-heading font-bold text-primary-600">4</p>
               <p class="text-sm text-gray-600 font-body">Step Approach</p>
             </div>
           </div>
@@ -108,7 +108,7 @@ const holisticAspects = siteConfig.bio.holisticAspects;
           My Proven Method
         </span>
         <h2 class="text-3xl md:text-4xl font-heading font-bold text-primary-900">
-          The 5-Step Approach
+          The 4-Step Approach
         </h2>
         <p class="mt-6 text-lg text-gray-700 font-body leading-relaxed">
           {differentiator}
@@ -218,10 +218,10 @@ const holisticAspects = siteConfig.bio.holisticAspects;
 
           <div class="flex justify-center">
             <div class="relative rounded-2xl overflow-hidden shadow-xl w-full max-w-sm">
-              <!-- Photo by Valdhy Mbemba on Unsplash -->
+              <!-- Photo by Hanna Balan on Unsplash — dried herbs -->
               <img
-                src="/images/unsplash/wellness-2.jpg"
-                alt="Group wellness coaching session outdoors"
+                src="/images/unsplash/wellness-1.jpg"
+                alt="Dried healing herbs hanging naturally — representing holistic functional medicine"
                 width="1080" height="720"
                 decoding="async"
                 class="w-full object-cover"

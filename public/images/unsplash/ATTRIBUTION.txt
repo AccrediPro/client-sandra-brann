@@ -1,4 +1,4 @@
-Unsplash Image Attribution — Mariska Goebel Client Website
+Unsplash Image Attribution — Client Template Base
 ============================================================
 
 These images are sourced from Unsplash (https://unsplash.com) under the Unsplash License.

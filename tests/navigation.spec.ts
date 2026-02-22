@@ -19,7 +19,7 @@ test.describe('Desktop Navigation', () => {
     // Click the logo link
     const logoLink = page.locator('header a[href="/"]').first();
     await expect(logoLink).toBeVisible();
-    await expect(logoLink).toHaveText('Mariska Goebel');
+    await expect(logoLink).toHaveText(/\[FIRST\] \[LAST\]|Health/);
 
     await logoLink.click();
     await expect(page).toHaveURL('/');

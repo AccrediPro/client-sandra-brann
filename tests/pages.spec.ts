@@ -4,25 +4,25 @@ const pages = [
   {
     path: '/',
     name: 'Homepage',
-    expectedTitle: 'Mariska Goebel - Certified Functional Medicine Coach',
-    expectedH1: /Transform Your Health|Restore Your Health|Thyroid|Hormonal/i,
+    expectedTitle: /Health & Wellness/i,
+    expectedH1: /Transform Your Health|Restore Your Health|Take Control/i,
   },
   {
     path: '/about',
     name: 'About page',
-    expectedTitle: /About.*Mariska Goebel/i,
-    expectedH1: /Hi, I'm Mariska|About Mariska/i,
+    expectedTitle: /About/i,
+    expectedH1: /Hi, I'm|About/i,
   },
   {
     path: '/services',
     name: 'Services page',
-    expectedTitle: /Services.*Mariska Goebel/i,
+    expectedTitle: /Services/i,
     expectedH1: /Programs to.*Restore Your Health|Programs/i,
   },
   {
     path: '/contact',
     name: 'Contact page',
-    expectedTitle: /Contact.*Mariska Goebel/i,
+    expectedTitle: /Contact/i,
     expectedH1: /Let's Start|Get in Touch|Contact|Discovery/i,
   },
 ];
@@ -69,16 +69,16 @@ test.describe('Page Content Verification', () => {
     await page.goto('/about');
 
     // Check for certification badges
-    await expect(page.locator('text=DNP').first()).toBeVisible();
-    await expect(page.locator('text=FNP-BC').first()).toBeVisible();
+    await expect(page.locator('text=HC').first()).toBeVisible();
+    await expect(page.locator('text=AccrediPro').first()).toBeVisible();
   });
 
   test('Services page has service offerings', async ({ page }) => {
     await page.goto('/services');
 
     // Check for main service sections
-    await expect(page.locator('text=3 Month Thyroid Optimization').first()).toBeVisible();
-    await expect(page.locator('text=Rebalancing Your Hormones').first()).toBeVisible();
+    await expect(page.locator('text=Personalized Wellness Program').first()).toBeVisible();
+    await expect(page.locator('text=Ongoing Support').first()).toBeVisible();
   });
 
   test('Contact page has contact form', async ({ page }) => {
@@ -89,8 +89,5 @@ test.describe('Page Content Verification', () => {
     await expect(page.locator('input[name="email"]')).toBeVisible();
     await expect(page.locator('textarea[name="message"]')).toBeVisible();
     await expect(page.locator('button[type="submit"]')).toBeVisible();
-
-    // Check for email display
-    await expect(page.locator('text=goebelfunctionalhealth@gmail.com').first()).toBeVisible();
   });
 });

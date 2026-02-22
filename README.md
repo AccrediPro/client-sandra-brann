@@ -1,6 +1,14 @@
-# Mariska Goebel - Certified Functional Medicine Coach
+# Client Template Base — Health & Wellness Coach
 
-A professional website built with Astro v5, Tailwind CSS, and modern web technologies.
+A generic, professional website template for health and wellness coaches. Built with Astro v5, Tailwind CSS, and modern web technologies.
+
+## Quick Start — New Client Setup
+
+1. Copy this directory: `cp -r client-template-base client-<firstname>-<lastname>`
+2. Open `src/config/siteConfig.ts` and replace `[FIRST]` and `[LAST]` with the client's name
+3. Optionally update: email, phone, brand colors, services, bio
+4. Run `npm install && npm run build` to verify
+5. Deploy to Vercel
 
 ## Tech Stack
 
@@ -47,19 +55,6 @@ npm run build
 npm run preview
 ```
 
-### Testing
-
-```bash
-# Run all tests
-npm run test
-
-# Run tests with UI
-npm run test:ui
-
-# Run specific test file
-npx playwright test tests/pages.spec.ts
-```
-
 ## Project Structure
 
 ```
@@ -74,6 +69,7 @@ npx playwright test tests/pages.spec.ts
 │   │   ├── sections/ # Page sections
 │   │   ├── seo/      # SEO components
 │   │   └── ui/       # Reusable UI components
+│   ├── config/       # Site configuration (siteConfig.ts)
 │   ├── data/         # Static data (coach.json)
 │   ├── layouts/      # Base layouts
 │   ├── lib/          # Utilities
@@ -99,7 +95,6 @@ The site is built as static HTML and can be deployed to any static hosting:
 - Vercel (recommended)
 - Netlify
 - Cloudflare Pages
-- AWS S3 + CloudFront
 
 ```bash
 # Build and deploy to Vercel
@@ -111,8 +106,8 @@ vercel --prod
 | Variable | Description |
 |----------|-------------|
 | `SITE_URL` | Production URL for canonical links |
-| `PHOENIX_API_URL` | API endpoint for contact form |
-| `COACH_ID` | Coach identifier |
+| `RESEND_API_KEY` | API key for email sending |
+| `CONTACT_EMAIL` | Email address to receive contact form submissions |
 
 ## License
 

@@ -28,7 +28,6 @@ test.describe('Contact Form', () => {
     });
 
     test('renders labels for all fields', async ({ page }) => {
-      // Use label elements for more precise matching
       await expect(page.locator('label[for="input-name"]')).toContainText('Your Name');
       await expect(page.locator('label[for="input-email"]')).toContainText('Email Address');
       await expect(page.locator('label[for="input-phone"]')).toContainText('Phone Number');
@@ -42,7 +41,6 @@ test.describe('Contact Form', () => {
     });
 
     test('shows required field indicator', async ({ page }) => {
-      // The form has a "* Required fields" note
       await expect(page.getByText('Required fields')).toBeVisible();
     });
 
@@ -65,21 +63,13 @@ test.describe('Contact Form', () => {
 
   test.describe('Form Validation', () => {
     test('required fields have required attribute', async ({ page }) => {
-      // Name should be required
       await expect(page.locator('input[name="name"]')).toHaveAttribute('required', '');
-
-      // Email should be required
       await expect(page.locator('input[name="email"]')).toHaveAttribute('required', '');
-
-      // Message should be required
       await expect(page.locator('textarea[name="message"]')).toHaveAttribute('required', '');
-
-      // Phone should NOT be required
       await expect(page.locator('input[name="phone"]')).not.toHaveAttribute('required', '');
     });
 
     test('email field validates email format (via type=email)', async ({ page }) => {
-      // The email field has type="email" which provides native validation
       const emailInput = page.locator('input[name="email"]');
       await expect(emailInput).toHaveAttribute('type', 'email');
     });
@@ -90,7 +80,6 @@ test.describe('Contact Form', () => {
       await page.locator('input[name="phone"]').fill('555-123-4567');
       await page.locator('textarea[name="message"]').fill('This is a test message');
 
-      // Verify all values were set correctly
       await expect(page.locator('input[name="name"]')).toHaveValue('Jane Smith');
       await expect(page.locator('input[name="email"]')).toHaveValue('jane@example.com');
       await expect(page.locator('input[name="phone"]')).toHaveValue('555-123-4567');
@@ -100,42 +89,33 @@ test.describe('Contact Form', () => {
 
   test.describe('Form Submission', () => {
     test('shows loading state when form is submitted', async ({ page }) => {
-      // Fill in all required fields
       await page.locator('input[name="name"]').fill('Jane Smith');
       await page.locator('input[name="email"]').fill('test@example.com');
       await page.locator('textarea[name="message"]').fill('This is a test message for the loading state test');
 
-      // Submit the form
       await page.locator('button[type="submit"]').click();
 
-      // Should show loading state (use ID selector for precision)
       await expect(page.locator('#contact-form-loading')).toBeVisible({ timeout: 3000 });
     });
 
     test('shows success state after submission', async ({ page }) => {
-      // Fill in all required fields
       await page.locator('input[name="name"]').fill('Jane Smith');
       await page.locator('input[name="email"]').fill('test@example.com');
       await page.locator('textarea[name="message"]').fill('This is a test message for the success state test');
 
-      // Submit the form
       await page.locator('button[type="submit"]').click();
 
-      // Wait for success state (simulated API call takes ~1.5s, use ID selector)
       await expect(page.locator('#contact-form-success')).toBeVisible({ timeout: 5000 });
       await expect(page.locator('#contact-form-success')).toContainText('Message Sent');
     });
 
     test('phone field is optional for submission', async ({ page }) => {
-      // Fill in all required fields without phone
       await page.locator('input[name="name"]').fill('Jane Smith');
       await page.locator('input[name="email"]').fill('test@example.com');
       await page.locator('textarea[name="message"]').fill('Test message without phone number');
 
-      // Submit the form
       await page.locator('button[type="submit"]').click();
 
-      // Should succeed without phone number (use ID selector)
       await expect(page.locator('#contact-form-success')).toBeVisible({ timeout: 5000 });
     });
   });
@@ -148,7 +128,6 @@ test.describe('Contact Form', () => {
     });
 
     test('success and error states have aria-live', async ({ page }) => {
-      // Check that the success/error/loading states are set up with aria-live
       const loadingState = page.locator('[id$="-loading"]');
       const successState = page.locator('[id$="-success"]');
       const errorState = page.locator('[id$="-error"]');
@@ -165,19 +144,7 @@ test.describe('Contact Page Elements', () => {
     await page.goto('/contact');
   });
 
-  test('displays coach email address', async ({ page }) => {
-    // The email should appear in multiple places on the page
-    const emailText = page.getByText('goebelfunctionalhealth@gmail.com').first();
-    await expect(emailText).toBeVisible();
-  });
-
-  test('has mailto link for direct email', async ({ page }) => {
-    const emailLink = page.locator('a[href^="mailto:goebelfunctionalhealth@gmail.com"]').first();
-    await expect(emailLink).toBeVisible();
-  });
-
   test('displays contact methods section', async ({ page }) => {
-    // Check for the contact method cards
     await expect(page.locator('h2', { hasText: 'Email Me Directly' })).toBeVisible();
     await expect(page.locator('h2', { hasText: 'Book a Free Session' })).toBeVisible();
   });
@@ -190,7 +157,7 @@ test.describe('Contact Page Elements', () => {
   });
 
   test('page has proper title', async ({ page }) => {
-    await expect(page).toHaveTitle(/Contact.*Mariska Goebel/i);
+    await expect(page).toHaveTitle(/Contact/i);
   });
 
   test('page hero has encouraging text', async ({ page }) => {

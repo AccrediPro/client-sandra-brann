@@ -105,7 +105,7 @@ export const POST: APIRoute = async ({ request }) => {
                 </div>
             </div>
             <div class="footer">
-                This email was sent from the Mariska Goebel website contact form.
+                This email was sent from the website contact form.
             </div>
         </div>
     </div>
