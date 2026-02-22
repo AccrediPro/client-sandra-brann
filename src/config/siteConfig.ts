@@ -220,6 +220,13 @@ export const siteConfig = {
       content:
         "After years of being told everything was 'normal' despite not feeling well, I finally found answers through personalized coaching. The root-cause approach helped me understand what was really going on, and the step-by-step plan made the changes feel manageable. I wish I had started sooner.",
     },
+    {
+      name: "Relieved Client",
+      role: "Stress & Wellness Coaching Client",
+      outcome: "Transformed stress into calm, focused energy",
+      content:
+        "I came in completely overwhelmed — between work, family, and my own health taking a backseat, I didn't know where to start. My coach helped me see how stress was affecting everything from my sleep to my digestion. With a clear, step-by-step plan, I went from running on fumes to actually feeling like myself again. The accountability and support made all the difference.",
+    },
   ],
 
   // ─── Who I Work With ──────────────────────────────────────────────────────
