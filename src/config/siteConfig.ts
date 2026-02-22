@@ -31,9 +31,10 @@ export const siteConfig = {
 
   // ─── Images ───────────────────────────────────────────────────────────────
   images: {
-    portrait: "/images/generated/coach-portrait.jpg",
+    portrait: "/images/generated/section-bg-wellness.jpg",
     hero: "/images/generated/hero-variant-1.jpg",
     ogDefault: "/images/og-default.jpg",
+    logo: "/images/logo.png",
   },
 
   // ─── Social Media ─────────────────────────────────────────────────────────

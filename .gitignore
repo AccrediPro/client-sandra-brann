@@ -31,3 +31,4 @@ playwright-report/
 
 # QA screenshots
 *.png
+!public/images/logo.png

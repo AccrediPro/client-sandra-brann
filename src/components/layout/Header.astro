@@ -34,9 +34,16 @@ function isActive(href: string): boolean {
       <!-- Logo -->
       <a
         href="/"
-        class="font-heading text-xl md:text-2xl font-semibold text-primary-800 hover:text-primary-600 transition-colors"
+        class="flex items-center gap-2 hover:opacity-90 transition-opacity"
       >
-        {siteConfig.coach.name}
+        <img
+          src={siteConfig.images.logo}
+          alt="Goebel Functional Health"
+          class="h-10 md:h-11 w-auto rounded"
+        />
+        <span class="font-heading text-lg md:text-xl font-semibold text-primary-800 hidden sm:inline">
+          {siteConfig.coach.name}
+        </span>
       </a>
 
       <!-- Desktop Navigation -->
